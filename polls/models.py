@@ -8,7 +8,7 @@ class Poll(models.Model):
 
 
 class Choice(models.Model):
-    poll = models.ForiegnKey(Poll)
+    poll = models.ForeignKey(Poll)
     choice = models.CharField(max_length=200)
     votes = models.IntegerField()
     
