@@ -1,7 +1,7 @@
 from django.contrib import admin
 from polls.models import Choice, Poll
 
-class ChoiceInline(admin.StackedInline):
+class ChoiceInline(admin.TabularInline):
     #This tells Django: 
     #Choice objects are edited on the Poll admin page. 
     #By default, provide enough fields for 3 choices.
@@ -19,5 +19,6 @@ class PollAdmin(admin.ModelAdmin):
         #needs a trailing comma
     ]
     inlines = [ChoiceInline]
+    list_display = ('question', 'pub_date', 'was_published_recently')
 
 admin.site.register(Poll, PollAdmin)
