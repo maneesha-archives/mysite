@@ -11,6 +11,9 @@ class Poll(models.Model):
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
+    was_published_recently.admin_order_field = 'pub_date'
+    #this along with list_filter in admin.py creates option to filter by date
+
     def __unicode__(self):
         return u'%s %s' %(self.question, self.pub_date)
 

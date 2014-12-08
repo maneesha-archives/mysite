@@ -20,5 +20,6 @@ class PollAdmin(admin.ModelAdmin):
     ]
     inlines = [ChoiceInline]
     list_display = ('question', 'pub_date', 'was_published_recently')
+    list_filter = ['pub_date'] #this along with admin_order_field in models.py creates option to filter by date
 
 admin.site.register(Poll, PollAdmin)
