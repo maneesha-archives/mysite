@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
 from django.template import RequestContext, loader
 from polls.models import Poll 
@@ -26,13 +26,15 @@ def index(request):
 #some views that take arguments
 def detail(request, poll_id):
     #return HttpResponse("You're looking at poll %s." % poll_id)
-    #Add 404 
-    try:
-        poll = Poll.objects.get(pk=poll_id)
-    except:
-        raise Http404
+    #Add 404 the hard way
+    # try:
+    #     poll = Poll.objects.get(pk=poll_id)
+    # except:
+    #     raise Http404
+    # return render(request, 'polls/detail.html', {'poll':poll})
+    # Add 404 handling the easy way
+    poll = get_object_or_404(Poll, pk=poll_id)
     return render(request, 'polls/detail.html', {'poll':poll})
-
 
 def results(request, poll_id):
     return HttpResponse("You're looking at the results of poll %s." % poll_id)
