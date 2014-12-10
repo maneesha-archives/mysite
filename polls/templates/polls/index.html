@@ -1,7 +1,10 @@
 {% if latest_poll_list %}
     <ul>
         {% for poll in latest_poll_list %}
-            <li><a href="/polls/{{ poll.id }}/">{{ poll.question }}</a></li>
+<!--         <li><a href="/polls/{{ poll.id }}/">{{ poll.question }}</a></li> -->
+<!-- Above has link hardcoded, which can cause problems when you need to change url-->
+<!-- Try this instead: -->
+             <li><a href = "{% url 'detail' poll.id %}">{{ poll.question }}</a></li>
         {% endfor %}
     </ul>
 
