@@ -1,6 +1,32 @@
 <h1>{{ poll.question }}</h1>
+
+<!-- This just shows all choices in a simple html list.
 <ul>
 {% for choice in poll.choice_set.all %}
     <li>{{ choice.choice_text }}</li>
 {% endfor %}
-</ul>
+</ul> -->
+
+<!-- This actually creates a form for the choices. -->
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<!-- Form action goes to specified URL -->
+<!-- The view for this url must be edited to be useful -->
+<!-- Method must be post not get because it alters data server side. (FOR ANY APP NOT JUST DJANGO) -->
+<form action = "{% url 'polls:vote' poll.id %}" method="post">
+
+<!-- Prevents cross site request forgeries -->
+{% csrf_token %}  
+
+{% for choice in poll.choice_set.all %}
+<!--Display a radio button for each choice
+    Value of button is the poll choice ID
+    Name of button is "choice" 
+    forloop.counter indicates how many times for tag has gone through loop -->
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+{% endfor %}
+
+<!-- On form submission it will send POST data choice=# where # is ID of selected choice -->
+ <input type="submit" value="Vote" />
+</form> 
