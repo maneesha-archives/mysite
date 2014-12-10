@@ -4,7 +4,8 @@
 <!--         <li><a href="/polls/{{ poll.id }}/">{{ poll.question }}</a></li> -->
 <!-- Above has link hardcoded, which can cause problems when you need to change url-->
 <!-- Try this instead: -->
-             <li><a href = "{% url 'detail' poll.id %}">{{ poll.question }}</a></li>
+            <!-- look up the url named detail in namespace polls -->
+             <li><a href = "{% url 'polls:detail' poll.id %}">{{ poll.question }}</a></li>
         {% endfor %}
     </ul>
 

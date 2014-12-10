@@ -10,7 +10,11 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     #this tells django to also include polls/urls.py
-    url(r'^polls/', include('polls.urls')), #remember the trailing comma!
+    url(r'^polls/', include('polls.urls', namespace="polls")),
+    #add namespace to be able to keep track of multiple projects.
+    #This will be used in templates for that project's urls  
+
+    #remember the trailing comma!
 
     #url takes four arguments:
     #regex to create the url
