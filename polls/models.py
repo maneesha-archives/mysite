@@ -24,5 +24,5 @@ class Choice(models.Model):
     votes = models.IntegerField()
     
     def __unicode__(self):
-        return u'%s %s' % (self.choice, self.votes)
+        return u'%s %s' % (self.choice_text, self.votes)
 
