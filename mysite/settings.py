@@ -17,12 +17,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '7juqcxwf*+e@+n(6yur@93grec_@4@o03$o2cmie^d3waqmh+b'
+
+#SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -85,3 +86,8 @@ STATIC_URL = '/static/'
 
 #Create templates directory
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+
+try:
+    from local_settings import *
+except ImportError:
+    pass

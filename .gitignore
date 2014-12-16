@@ -1,2 +1,4 @@
 *.pyc
 mysite/*.pyc
+mysite/local_settings.py
+
